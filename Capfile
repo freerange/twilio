@@ -5,6 +5,12 @@ set :repository, 'git@github.com:freerange/twilio.git'
 
 server 'badger.gofreerange.com', :app
 
+namespace :deploy do
+  task :restart do
+    as_app "mkdir -p tmp && touch tmp/restart.txt"
+  end
+end
+
 namespace :apache do
   desc "Copy the apache config file from this app to /etc/apache2/sites-available"
   task :update_config do
